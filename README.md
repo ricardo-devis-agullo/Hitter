@@ -1,11 +1,13 @@
 # Hitter
 
+** STILL IN PROGRESS **
+
 A small library with zero dependencies for doing request hits (that is, requests in where you don't expect a response from the server). This library will try different methods, via Image, XHR or sendBeacon to get there, depending on availability and options passed.
 
 ## Installation
 
 ```
-npm install xhr
+npm install hitter
 ```
 
 ## Example

@@ -24,7 +24,12 @@
     }
   },
   "author": "Ricardo Devis Agullo <mkredz@gmail.com>",
+  "repository": "git://github.com/ricardo-devis-agullo/Hitter.git",
+  "homepage": "https://github.com/ricardo-devis-agullo/Hitter",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ricardo-devis-agullo/Hitter/issues"
+  },
   "devDependencies": {
     "@types/jest": "^22.0.0",
     "husky": "^0.14.3",
