@@ -5,9 +5,9 @@ import { createUrl, toQueryParams } from './utils';
 const addDefaultConfig = (config: Partial<IHitConfig> = {}): IHitConfig => ({
   ...{
     force: '',
+    maxImgLength: 2036,
     path: [],
     payload: '',
-    maxImgLength: 2036,
   },
   ...config,
 });
@@ -16,14 +16,14 @@ const sanitizeParams = (
   configOrCallback: Partial<IHitConfig> | Callback = {},
   callbackOrNothing: Callback = () => undefined
 ) => ({
-  config:
-    typeof configOrCallback === 'function'
-      ? addDefaultConfig()
-      : addDefaultConfig(configOrCallback),
   callback:
     typeof configOrCallback === 'function'
       ? configOrCallback
       : callbackOrNothing,
+  config:
+    typeof configOrCallback === 'function'
+      ? addDefaultConfig()
+      : addDefaultConfig(configOrCallback),
 });
 
 export default function Hitter(baseUrl: string) {
