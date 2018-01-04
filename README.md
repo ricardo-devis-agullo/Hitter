@@ -14,10 +14,10 @@ npm install hitter
 
 ```js
 var Hitter = require('hitter');
-var hitter = Hitter('//myapi.com/data');
-// or var hitter = require('hitter')('//myapi.com/data');
+var hit = Hitter('//myapi.com/data');
+// or var hit = require('hitter')('//myapi.com/data');
 
-hitter(
+hit(
   {
     payload: {
       data1: 'value1',
