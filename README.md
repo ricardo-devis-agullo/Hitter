@@ -34,7 +34,27 @@ hit(
 );
 ```
 
+## Creating an instance
+
+##### Hitter(baseUrl)
+
+What you get from the library is a constructor that will take a url as a parameter that will be the base of where to do the calls (can be expanded with paths on the config options later at the instance level).
+
+It will return a function that can be called to do the hits.
+
+## Using the instance
+
+##### hit(config, callback?)
+
+Will take a config object and an optional callback to do something after the hit (you won't get any parameters).
+
+##### hit(callback?)
+
+Optionally you can also call it with only an optional callback if you don't care about the config options.
+
 ## Config object
+
+All parameters are optional.
 
 ### `Config.force`
 
