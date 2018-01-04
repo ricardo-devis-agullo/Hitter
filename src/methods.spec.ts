@@ -67,8 +67,8 @@ describe('method', () => {
     beforeEach(() => {
       mockImage = {
         src: '',
-        onload: () => undefined,
         onerror: () => undefined,
+        onload: () => undefined,
       };
       document.createElement = jest.fn(el => (el === 'img' ? mockImage : {}));
       methods.img(url, payload, callback);
@@ -134,10 +134,10 @@ describe('method', () => {
     });
     describe('when is supported', () => {
       const mockXhr = {
+        onreadystatechange: () => undefined,
         open: jest.fn(),
         readyState: -1,
         send: jest.fn(),
-        onreadystatechange: () => undefined,
         setRequestHeader: jest.fn(),
         withCredentials: undefined,
       };
