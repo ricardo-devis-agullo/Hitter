@@ -66,9 +66,9 @@ describe('method', () => {
 
     beforeEach(() => {
       mockImage = {
-        src: '',
         onerror: () => undefined,
         onload: () => undefined,
+        src: '',
       };
       document.createElement = jest.fn(el => (el === 'img' ? mockImage : {}));
       methods.img(url, payload, callback);
