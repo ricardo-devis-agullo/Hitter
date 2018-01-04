@@ -1,8 +1,8 @@
 {
   "name": "hitter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple library for hit requests",
-  "main": "src/main.ts",
+  "main": "dist/bundle.js",
   "scripts": {
     "build": "rollup -c",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
