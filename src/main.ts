@@ -28,8 +28,8 @@ const sanitizeParams = (
 
 export default function Hitter(baseUrl: string) {
   return (
-    configOrCallback: Partial<IHitConfig> | Callback = {},
-    callbackOrNothing: Callback = () => undefined
+    configOrCallback?: Partial<IHitConfig> | Callback,
+    callbackOrNothing?: Callback
   ) => {
     const { config, callback } = sanitizeParams(
       configOrCallback,
