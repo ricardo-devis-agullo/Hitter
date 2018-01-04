@@ -4,13 +4,14 @@ describe('method', () => {
   const url = 'myapi.com';
   const payload = 'key1=value1&key2=value2';
   const callback = jest.fn();
+  let result: any;
 
   afterEach(() => {
     callback.mockClear();
+    result = undefined;
   });
 
   describe('beacon', () => {
-    let result: boolean;
     describe('when is not supported', () => {
       beforeEach(() => {
         delete window.navigator.sendBeacon;
@@ -107,8 +108,6 @@ describe('method', () => {
   });
 
   describe('xhr', () => {
-    let result: boolean;
-
     describe('when is not supported', () => {
       beforeEach(() => {
         (window as any).XMLHttpRequest = undefined;
