@@ -10,14 +10,18 @@ A small library with zero dependencies for doing request hits (that is, requests
 npm install hitter
 ```
 
+## Support
+
+It should work on IE11+. Only for browser.
+
 ## Example
 
 ```js
 var Hitter = require('hitter');
-var hitter = Hitter('//myapi.com/data');
-// or var hitter = require('hitter')('//myapi.com/data');
+var hit = Hitter('//myapi.com/data');
+// or var hit = require('hitter')('//myapi.com/data');
 
-hitter(
+hit(
   {
     payload: {
       data1: 'value1',
