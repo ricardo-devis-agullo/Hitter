@@ -1,12 +1,12 @@
 import { Callback } from './interfaces';
 
-const supportsXHR =
+const supportsXHR = () =>
   (window as any).XMLHttpRequest &&
   'withCredentials' in new (window as any).XMLHttpRequest();
-const supportsBeacon = !!window.navigator.sendBeacon;
+const supportsBeacon = () => 'sendBeacon' in window.navigator;
 
 const xhr = (url: string, payload: string, callback: Callback) => {
-  if (!supportsXHR) {
+  if (!supportsXHR()) {
     return false;
   }
   const request = new (window as any).XMLHttpRequest();
@@ -34,7 +34,7 @@ const img = (url: string, payload: string, callback: Callback) => {
 };
 
 const beacon = (url: string, payload: string, callback: Callback) => {
-  if (!supportsBeacon) {
+  if (!supportsBeacon()) {
     return false;
   }
   if (window.navigator.sendBeacon(url, payload)) {
