@@ -12,7 +12,7 @@ npm install hitter
 
 ## Support
 
-It should work on IE11+.
+It should work on IE11+. Only for browser.
 
 ## Example
 
