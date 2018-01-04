@@ -10,11 +10,16 @@ const createParams = (params: any) =>
       []
     )
     .join('&');
+
 export const toQueryParams = (params: Payload = '') =>
   typeof params === 'string' ? params : createParams(params);
 
 const createPath = (path: string[] = []) => path.join('/');
-export const createUrl = (url: string, path: string[]) =>
-  url[url.length - 1] === '/'
-    ? url.slice(0, -1) + createPath(path)
-    : url + createPath(path);
+
+export const createUrl = (baseUrl: string, urlPath: string[] | string = '') => {
+  const path = typeof urlPath === 'string' ? urlPath : createPath(urlPath);
+  const url =
+    path && baseUrl[baseUrl.length - 1] !== '/' ? `${baseUrl}/` : baseUrl;
+
+  return url + path;
+};
