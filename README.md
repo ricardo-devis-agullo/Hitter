@@ -10,6 +10,10 @@ A small library with zero dependencies for doing request hits (that is, requests
 npm install hitter
 ```
 
+## Support
+
+It should work on IE11+.
+
 ## Example
 
 ```js
