@@ -1,11 +1,12 @@
 {
   "name": "hitter",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A simple library for hit requests",
   "main": "dist/bundle.js",
   "scripts": {
     "build": "rollup -c",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+    "prepare": "npm run build",
     "test": "npm run lint && jest"
   },
   "jest": {
