@@ -43,6 +43,7 @@ hit(
   },
   function() {
     // Do something after the request is sent
+    // Not guaranteed that the request has finished
   }
 );
 ```
