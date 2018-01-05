@@ -1,6 +1,6 @@
 {
   "name": "hitter",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A simple library for hit requests",
   "main": "dist/bundle.js",
   "module": "dist/module.js",
