@@ -7,6 +7,14 @@
 
 A small library with zero dependencies for doing request hits (that is, requests in where you don't expect a response from the server). This library will try different methods, via Image, XHR or sendBeacon to get there, depending on availability and options passed.
 
+### Why?
+
+The main use for this is when you want to do hits to an analytics endpoint, where you just want a reliable and fast way to send something and you don't care about the response.
+
+That's why this library will try first using a [Image](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image) request, then with [sendBeacon](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon) and [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) (if supported).
+
+Although with XMLHttpRequest and sendBeacon will use a POST method, it will still send the payload as a [query param](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) string on plain text.
+
 ## Installation
 
 ```
