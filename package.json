@@ -8,7 +8,7 @@
     "build": "rollup -c",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "prepare": "npm run build",
-    "test": "npm run lint && jest"
+    "test": "npm run lint && jest --coverage"
   },
   "jest": {
     "transform": {

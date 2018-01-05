@@ -1,5 +1,5 @@
 export default {
-  beacon: jest.fn(),
-  img: jest.fn(),
-  xhr: jest.fn(),
+  beacon: jest.fn(() => true),
+  img: jest.fn(() => true),
+  xhr: jest.fn(() => true),
 };
