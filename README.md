@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/hitter.svg?style=flat-square)](https://www.npmjs.org/package/hitter)
 [![build status](https://img.shields.io/travis/ricardo-devis-agullo/Hitter.svg?style=flat-square)](https://travis-ci.org/ricardo-devis-agullo/Hitter)
+[![Coverage Status](https://coveralls.io/repos/github/ricardo-devis-agullo/Hitter/badge.svg?branch=master)](https://coveralls.io/github/ricardo-devis-agullo/Hitter?branch=master)
 [![npm downloads](https://img.shields.io/npm/dm/hitter.svg?style=flat-square)](http://npm-stat.com/charts.html?package=hitter)
 
 A small library with zero dependencies for doing request hits (that is, requests in where you don't expect a response from the server). This library will try different methods, via Image, XHR or sendBeacon to get there, depending on availability and options passed.
