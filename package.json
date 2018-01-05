@@ -8,7 +8,8 @@
     "build": "rollup -c",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "prepare": "npm run build",
-    "test": "npm run lint && jest --coverage"
+    "test": "npm run lint && jest --coverage",
+    "coveralls": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "jest": {
     "transform": {
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@types/jest": "22.0.0",
+    "coveralls": "^3.0.0",
     "husky": "0.14.3",
     "jest": "22.0.4",
     "lint-staged": "6.0.0",
