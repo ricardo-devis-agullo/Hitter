@@ -27,6 +27,10 @@ const sanitizeParams = (
 });
 
 export default function Hitter(baseUrl: string) {
+  if (!baseUrl || typeof baseUrl !== 'string') {
+    throw new TypeError('You must pass a url to the constructor');
+  }
+
   return (
     configOrCallback?: Partial<IHitConfig> | Callback,
     callbackOrNothing?: Callback
