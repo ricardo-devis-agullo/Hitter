@@ -11,7 +11,7 @@ A small library with zero dependencies for doing request hits (that is, requests
 
 The main use for this is when you want to do hits to an analytics endpoint, where you just want a reliable and fast way to send something and you don't care about the response.
 
-That's why this library will try first using a [Image](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image) request, then with [sendBeacon](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon) and [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) (if supported).
+That's why this library will try first using a [Image](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image) request, and if the payload is too long, then with [sendBeacon](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon) and [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) (if supported).
 
 Although with XMLHttpRequest and sendBeacon will use a POST method, it will still send the payload as a [query param](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) string on plain text.
 
@@ -26,6 +26,8 @@ npm install hitter
 It should work on IE11+. Only for browser.
 
 ## Example
+
+Since this is thought to be a library to hit usually a unique endpoint, you pass a url to the constructor where you will get the hits. That way you can call many times the instance with different payloads.
 
 ```js
 var Hitter = require('hitter');
