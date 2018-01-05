@@ -33,9 +33,9 @@ describe('constructor', () => {
     .entries({
       Array: [1],
       Function: () => undefined,
-      null: null,
       Number: 1,
       Object: { x: 1 },
+      null: null,
     })
     .forEach(([type, value]: any) => {
       test(`throws when passing a type of ${type}`, () => {
