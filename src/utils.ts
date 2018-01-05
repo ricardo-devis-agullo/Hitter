@@ -14,12 +14,21 @@ const createParams = (params: any) =>
 export const toQueryParams = (params: Payload = '') =>
   typeof params === 'string' ? params : createParams(params);
 
-const createPath = (path: string[] = []) => path.join('/');
+const trimEndSlash = (uri = '') =>
+  uri && uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri;
+
+const trimSlashes = (uri = '') =>
+  uri
+    .split('/')
+    .filter(Boolean)
+    .join('/');
+
+const createPath = (path: string[] | string = []) =>
+  typeof path === 'string' ? trimSlashes(path) : path.join('/');
 
 export const createUrl = (baseUrl: string, urlPath: string[] | string = '') => {
-  const path = typeof urlPath === 'string' ? urlPath : createPath(urlPath);
-  const url =
-    path && baseUrl[baseUrl.length - 1] !== '/' ? `${baseUrl}/` : baseUrl;
+  const path = createPath(urlPath);
+  const url = trimEndSlash(baseUrl);
 
-  return url + path;
+  return path ? `${url}/${path}` : url;
 };

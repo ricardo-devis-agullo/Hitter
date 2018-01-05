@@ -3,6 +3,15 @@ jest.mock('./methods');
 import Hitter from './main';
 import methods from './methods';
 
+interface IMockMethods {
+  beacon: jest.Mock;
+  img: jest.Mock;
+  xhr: jest.Mock;
+  [key: string]: jest.Mock;
+}
+
+const mockMethods = methods as IMockMethods;
+
 const url = 'url';
 const createString = (size = 1) => ('-' as any).repeat(size);
 
@@ -40,15 +49,31 @@ describe('instance', () => {
   let hit: any;
   beforeEach(() => {
     hit = Hitter(url);
-    (methods as any).beacon.mockClear();
-    (methods as any).img.mockClear();
-    (methods as any).xhr.mockClear();
+    jest.clearAllMocks();
   });
 
   test('will call via image by default', () => {
     hit();
 
-    expect(methods.img).toBeCalledWith(url, '', expect.any(Function));
+    expect(mockMethods.img).toBeCalledWith(url, '', expect.any(Function));
+  });
+  test('can take callback as first parameter', () => {
+    const firstCallback = () => undefined;
+
+    hit(firstCallback);
+
+    expect(mockMethods.img.mock.calls[0][2]).toBe(firstCallback);
+  });
+  test('can take callback as second parameter', () => {
+    const secondCallback = () => undefined;
+
+    hit({ payload: { callback: 'second' } }, secondCallback);
+
+    expect(mockMethods.img).toBeCalledWith(
+      url,
+      'callback=second',
+      secondCallback
+    );
   });
   describe('when forcing', () => {
     ['beacon', 'xhr'].forEach(method => {
@@ -57,7 +82,7 @@ describe('instance', () => {
           force: method,
         });
 
-        expect((methods as any)[method]).toBeCalled();
+        expect(mockMethods[method]).toBeCalled();
       });
     });
     test('will force img even when length exceeds max', () => {
@@ -68,14 +93,14 @@ describe('instance', () => {
         },
       });
 
-      expect(methods.img).toBeCalled();
+      expect(mockMethods.img).toBeCalled();
     });
     test('will call via image when passed empty string', () => {
       hit({
         force: '',
       });
 
-      expect(methods.img).toBeCalled();
+      expect(mockMethods.img).toBeCalled();
     });
     test('will throw if passing a different string', () => {
       expect(() => {
@@ -93,7 +118,7 @@ describe('instance', () => {
           key: 'value',
         },
       });
-      expect(methods.img).toBeCalled();
+      expect(mockMethods.img).toBeCalled();
     });
     test('will not call via img if it exceeds it', () => {
       hit({
@@ -102,7 +127,50 @@ describe('instance', () => {
           key: 'longerValue',
         },
       });
-      expect(methods.img).not.toBeCalled();
+      expect(mockMethods.img).not.toBeCalled();
+    });
+  });
+  describe('when configuring the path', () => {
+    test('will add it to the url', () => {
+      hit({
+        path: ['some', 'path'],
+      });
+
+      expect(mockMethods.img.mock.calls[0][0]).toBe(`${url}/some/path`);
+    });
+    test('will add a string to the url if passed', () => {
+      hit({
+        path: '/some/path/',
+      });
+
+      expect(mockMethods.img.mock.calls[0][0]).toBe(`${url}/some/path`);
+    });
+  });
+  describe('when length exceeds the image maximum', () => {
+    const lengthConfig = {
+      maxImgLength: 10,
+      payload: createString(20),
+    };
+
+    test('will call via beacon first', () => {
+      hit(lengthConfig);
+
+      expect(mockMethods.beacon).toBeCalled();
+    });
+    test('will call via xhr if beacon failed', () => {
+      mockMethods.beacon.mockReturnValueOnce(false);
+
+      hit(lengthConfig);
+
+      expect(mockMethods.xhr).toBeCalled();
+    });
+    test('will end calling via img if xhr and beacon failed', () => {
+      mockMethods.beacon.mockReturnValueOnce(false);
+      mockMethods.xhr.mockReturnValueOnce(false);
+
+      hit(lengthConfig);
+
+      expect(mockMethods.img).toBeCalled();
     });
   });
 });
